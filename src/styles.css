@@ -167,6 +167,7 @@ select {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   min-height: 0;
+  min-width: 0;
 }
 
 .panel-header {
@@ -181,11 +182,28 @@ select {
 
 .code-editor {
   min-height: 320px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .code-editor .cm-editor,
 .code-editor .cm-scroller {
   min-height: 320px;
+  max-width: 100%;
+}
+
+.code-editor .cm-editor {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.code-editor .cm-scroller {
+  overflow: auto;
+}
+
+.code-editor .cm-content,
+.code-editor .cm-line {
+  max-width: 100%;
 }
 
 .summary-bar {
