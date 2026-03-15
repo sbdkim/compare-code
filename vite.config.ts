@@ -6,7 +6,7 @@ declare const process: {
 };
 
 export default defineConfig({
-  base: process.env.PAGES_BASE ?? "/code_compare/",
+  base: process.env.PAGES_BASE ?? "/compare-code/",
   plugins: [react()],
   test: {
     environment: "jsdom",
