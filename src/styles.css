@@ -39,9 +39,9 @@ input {
 }
 
 button,
-select {
+select,
+input {
   border: 1px solid var(--border);
-  border-radius: var(--radius-full);
   background: var(--surface);
   color: var(--text);
 }
@@ -49,11 +49,13 @@ select {
 button {
   cursor: pointer;
   padding: 0.7rem 1rem;
+  border-radius: var(--radius-full);
   font-weight: var(--font-weight-bold);
   transition:
     background-color var(--duration-fast) var(--ease-default),
     border-color var(--duration-fast) var(--ease-default),
-    transform var(--duration-fast) var(--ease-default);
+    transform var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default);
 }
 
 button:hover {
@@ -62,13 +64,26 @@ button:hover {
   transform: translateY(-1px);
 }
 
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-brand-accent) 48%, white);
+  outline-offset: 2px;
+}
+
 button:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }
 
 select {
-  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-lg);
+  padding: 0.7rem 0.75rem;
+}
+
+input {
+  border-radius: var(--radius-lg);
+  padding: 0.7rem 0.75rem;
 }
 
 .app-shell {
@@ -161,8 +176,16 @@ select {
 .toolbar-group label {
   display: grid;
   gap: 0.35rem;
-  font-size: 0.92rem;
   color: var(--text-muted);
+}
+
+.toolbar-group label span,
+.panel-eyebrow {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand-secondary);
 }
 
 .toolbar-group-toggles {
@@ -178,6 +201,24 @@ select {
 
 .toolbar-actions {
   justify-content: flex-end;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, var(--color-brand-secondary) 0%, var(--color-brand-primary) 100%);
+  border-color: transparent;
+  color: var(--color-text-inverse);
+}
+
+.button-primary:hover {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-brand-secondary) 92%, black) 0%, color-mix(in srgb, var(--color-brand-primary) 92%, black) 100%);
+}
+
+.button-secondary {
+  background: var(--surface-alt);
+}
+
+.button-ghost {
+  background: var(--surface);
 }
 
 .toolbar-meta {
@@ -217,6 +258,17 @@ select {
   padding: 0.8rem 0.95rem;
   border-bottom: 1px solid var(--border);
   font-size: 0.95rem;
+}
+
+.panel-header > div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.panel-meta {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-mono);
 }
 
 .code-editor {
@@ -263,6 +315,33 @@ select {
 
 .status-message {
   color: var(--text-muted);
+}
+
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.stat-pill.additions {
+  color: var(--color-status-success);
+  background: color-mix(in srgb, var(--color-status-success) 10%, white);
+}
+
+.stat-pill.deletions {
+  color: var(--color-status-error);
+  background: color-mix(in srgb, var(--color-status-error) 9%, white);
+}
+
+.stat-pill.changes {
+  color: var(--color-brand-primary);
+  background: color-mix(in srgb, var(--color-brand-primary) 11%, white);
 }
 
 .results-panel {
@@ -382,5 +461,15 @@ select {
   .summary-bar {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+
+  button:hover {
+    transform: none;
   }
 }

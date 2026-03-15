@@ -121,25 +121,25 @@ export function Toolbar({
         </label>
       </div>
       <div className="toolbar-group toolbar-actions">
-        <button type="button" onClick={() => onImport("left")}>
+        <button className="button-secondary" type="button" onClick={() => onImport("left")}>
           Import left
         </button>
-        <button type="button" onClick={() => onImport("right")}>
+        <button className="button-secondary" type="button" onClick={() => onImport("right")}>
           Import right
         </button>
-        <button type="button" onClick={() => onCopyPane("left")}>
+        <button className="button-ghost" type="button" onClick={() => onCopyPane("left")}>
           Copy left
         </button>
-        <button type="button" onClick={() => onCopyPane("right")}>
+        <button className="button-ghost" type="button" onClick={() => onCopyPane("right")}>
           Copy right
         </button>
-        <button type="button" onClick={onCopyDiff}>
+        <button className="button-primary" type="button" onClick={onCopyDiff}>
           Copy diff
         </button>
-        <button type="button" onClick={onSwap}>
+        <button className="button-secondary" type="button" onClick={onSwap}>
           Swap
         </button>
-        <button type="button" onClick={onClear}>
+        <button className="button-ghost" type="button" onClick={onClear}>
           Clear
         </button>
       </div>

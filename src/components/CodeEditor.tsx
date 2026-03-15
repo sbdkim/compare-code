@@ -20,7 +20,11 @@ export function CodeEditor({
   return (
     <section className="editor-panel">
       <div className="panel-header">
-        <span>{label}</span>
+        <div>
+          <p className="panel-eyebrow">Editor</p>
+          <span>{label}</span>
+        </div>
+        <span className="panel-meta">{value ? `${value.split("\n").length} lines` : "Empty"}</span>
       </div>
       <CodeMirror
         aria-label={label}

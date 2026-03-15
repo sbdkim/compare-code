@@ -15,21 +15,23 @@ export function DiffSummary({
   onPrevious,
   onNext,
 }: DiffSummaryProps) {
+  const hasChanges = totalChanges > 0;
+
   return (
     <div className="summary-bar">
       <div className="summary-stats" aria-label="Difference summary">
-        <span>{document.stats.additions} additions</span>
-        <span>{document.stats.deletions} deletions</span>
-        <span>{document.stats.modifications} changes</span>
+        <span className="stat-pill additions">{document.stats.additions} additions</span>
+        <span className="stat-pill deletions">{document.stats.deletions} deletions</span>
+        <span className="stat-pill changes">{document.stats.modifications} changes</span>
       </div>
       <div className="summary-nav">
-        <span>
-          {totalChanges === 0 ? "No changes" : `${activeIndex + 1} / ${totalChanges}`}
+        <span className="status-message">
+          {hasChanges ? `${activeIndex + 1} / ${totalChanges} highlighted change sets` : "No differences detected"}
         </span>
-        <button type="button" onClick={onPrevious} disabled={totalChanges === 0}>
+        <button className="button-ghost" type="button" onClick={onPrevious} disabled={!hasChanges}>
           Previous
         </button>
-        <button type="button" onClick={onNext} disabled={totalChanges === 0}>
+        <button className="button-secondary" type="button" onClick={onNext} disabled={!hasChanges}>
           Next
         </button>
       </div>
