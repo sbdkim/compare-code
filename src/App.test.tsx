@@ -65,11 +65,8 @@ describe("App", () => {
     expect(window.localStorage.getItem("code-compare-session")).toContain('"leftText":""');
   });
 
-  it("toggles and persists theme", async () => {
-    const user = userEvent.setup();
+  it("persists the Northline light theme", () => {
     render(<App />);
-
-    await user.click(screen.getByRole("button", { name: "Light mode" }));
 
     expect(document.documentElement.dataset.theme).toBe("light");
     expect(window.localStorage.getItem("code-compare-session")).toContain('"theme":"light"');

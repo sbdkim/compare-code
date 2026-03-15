@@ -4,7 +4,7 @@ import {
   DEFAULT_RIGHT_TEXT,
   STORAGE_KEY,
 } from "./constants";
-import type { DiffTheme, PersistedSession } from "../types/diff";
+import type { PersistedSession } from "../types/diff";
 
 export function createDefaultSession(): PersistedSession {
   return {
@@ -12,7 +12,7 @@ export function createDefaultSession(): PersistedSession {
     leftText: DEFAULT_LEFT_TEXT,
     rightText: DEFAULT_RIGHT_TEXT,
     options: DEFAULT_OPTIONS,
-    theme: "dark",
+    theme: "light",
   };
 }
 
@@ -32,7 +32,10 @@ export function loadSession(): PersistedSession {
       return createDefaultSession();
     }
 
-    return parsed;
+    return {
+      ...parsed,
+      theme: "light",
+    };
   } catch {
     return createDefaultSession();
   }
@@ -46,6 +49,3 @@ export function clearSession() {
   window.localStorage.removeItem(STORAGE_KEY);
 }
 
-export function applyTheme(theme: DiffTheme) {
-  document.documentElement.dataset.theme = theme;
-}

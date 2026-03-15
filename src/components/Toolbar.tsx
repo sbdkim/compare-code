@@ -1,6 +1,5 @@
 import type {
   ComparisonOptions,
-  DiffTheme,
   DiffViewMode,
   InputSide,
 } from "../types/diff";
@@ -8,10 +7,8 @@ import { LANGUAGE_OPTIONS } from "../lib/constants";
 
 interface ToolbarProps {
   options: ComparisonOptions;
-  theme: DiffTheme;
   resolvedLanguage: string;
   onOptionsChange: (update: Partial<ComparisonOptions>) => void;
-  onThemeToggle: () => void;
   onSwap: () => void;
   onClear: () => void;
   onCopyPane: (side: InputSide) => void;
@@ -21,10 +18,8 @@ interface ToolbarProps {
 
 export function Toolbar({
   options,
-  theme,
   resolvedLanguage,
   onOptionsChange,
-  onThemeToggle,
   onSwap,
   onClear,
   onCopyPane,
@@ -146,9 +141,6 @@ export function Toolbar({
         </button>
         <button type="button" onClick={onClear}>
           Clear
-        </button>
-        <button type="button" onClick={onThemeToggle} className="theme-button">
-          {theme === "dark" ? "Light mode" : "Dark mode"}
         </button>
       </div>
       <div className="toolbar-meta">Detected: {resolvedLanguage}</div>

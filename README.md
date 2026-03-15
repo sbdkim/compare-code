@@ -1,9 +1,9 @@
-# Code Compare
+# Compare Code
 
-Client-side code and text diff tool for comparing files in the browser with editor-grade controls and static deployment support.
+Client-side code and text diff workspace for comparing files in the browser with Northline styling and editor-grade controls.
 
 ## Live Demo
-Expected GitHub Pages path:
+Current GitHub Pages path:
 `https://sbdkim.github.io/code_compare/`
 
 ## Key Features
@@ -36,7 +36,8 @@ npm test
 
 ## Deployment Notes
 - This project is configured for static hosting and GitHub Pages project-site deployment.
-- The current Vite base path targets `/code_compare/`, so keep that aligned with the repository name when publishing.
+- The Vite base path is configurable via `PAGES_BASE` and currently defaults to the existing repo slug for safe deployment.
+- When the repository slug is renamed to `compare-code`, set `PAGES_BASE=/compare-code/` before switching the public Pages URL.
 
 ## Architecture
 - The diff domain model lives in `src/types/diff.ts`.

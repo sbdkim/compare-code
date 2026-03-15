@@ -19,16 +19,13 @@ import { createDiffStrategy } from "./lib/diffEngine";
 import { readImportFile } from "./lib/imports";
 import { getLanguageFromExtension } from "./lib/language";
 import {
-  applyTheme,
   clearSession,
-  createDefaultSession,
   loadSession,
   saveSession,
 } from "./lib/persistence";
 import { formatUnifiedDiff } from "./lib/unifiedText";
 import type {
   ComparisonOptions,
-  DiffTheme,
   InputSide,
   PersistedSession,
 } from "./types/diff";
@@ -38,7 +35,6 @@ function App() {
   const [leftText, setLeftText] = useState(initialSession.leftText);
   const [rightText, setRightText] = useState(initialSession.rightText);
   const [options, setOptions] = useState(initialSession.options);
-  const [theme, setTheme] = useState<DiffTheme>(initialSession.theme);
   const [message, setMessage] = useState("Ready");
   const [activeIndex, setActiveIndex] = useState(0);
   const leftImportRef = useRef<HTMLInputElement>(null);
@@ -71,8 +67,8 @@ function App() {
   );
 
   useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
+    document.documentElement.dataset.theme = "light";
+  }, []);
 
   useEffect(() => {
     const session: PersistedSession = {
@@ -80,10 +76,10 @@ function App() {
       leftText,
       rightText,
       options,
-      theme,
+      theme: "light",
     };
     saveSession(session);
-  }, [leftText, options, rightText, theme]);
+  }, [leftText, options, rightText]);
 
   useEffect(() => {
     setActiveIndex((current) => {
@@ -146,12 +142,10 @@ function App() {
   }
 
   function handleClear() {
-    const fresh = createDefaultSession();
     startTransition(() => {
       setLeftText("");
       setRightText("");
       setOptions(DEFAULT_OPTIONS);
-      setTheme(fresh.theme);
     });
     clearSession();
     setMessage("Editors cleared");
@@ -196,14 +190,26 @@ function App() {
 
   return (
     <div className="app-shell">
+      <header className="suite-hero">
+        <div>
+          <p className="eyebrow">Northline Dev</p>
+          <h1>Compare Code</h1>
+          <p className="hero-copy">
+            Review changes in a cleaner local-first workspace with editor-grade
+            diff views and fewer visual distractions.
+          </p>
+        </div>
+        <div className="hero-note">
+          <span className="hero-note-label">Workspace</span>
+          <strong>Local-first compare</strong>
+          <p>{message}. All comparisons stay in the browser and persist locally between visits.</p>
+        </div>
+      </header>
+
       <Toolbar
         options={options}
-        theme={theme}
         resolvedLanguage={resolvedLanguage}
         onOptionsChange={updateOptions}
-        onThemeToggle={() =>
-          setTheme((current) => (current === "dark" ? "light" : "dark"))
-        }
         onSwap={handleSwap}
         onClear={handleClear}
         onCopyPane={(side) =>
@@ -242,7 +248,6 @@ function App() {
             value={leftText}
             onChange={(value) => updateText("left", value)}
             extensions={extensions}
-            theme={theme}
             onViewReady={(view) => {
               leftEditorRef.current = view;
             }}
@@ -252,7 +257,6 @@ function App() {
             value={rightText}
             onChange={(value) => updateText("right", value)}
             extensions={extensions}
-            theme={theme}
             onViewReady={(view) => {
               rightEditorRef.current = view;
             }}
