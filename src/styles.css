@@ -1,7 +1,7 @@
 :root {
   --bg: var(--color-surface-base);
   --surface: var(--color-surface-raised);
-  --surface-alt: color-mix(in srgb, var(--color-surface-sunken) 72%, white);
+  --surface-alt: color-mix(in srgb, var(--color-surface-sunken) 72%, var(--color-surface-raised));
   --border: var(--color-border-subtle);
   --border-strong: var(--color-border-default);
   --text: var(--color-text-primary);
@@ -91,7 +91,7 @@ input {
   padding: var(--space-6);
   background:
     radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 28%),
-    linear-gradient(180deg, #fffdf8 0%, var(--color-surface-base) 100%);
+    linear-gradient(180deg, color-mix(in srgb, var(--color-surface-raised) 84%, var(--color-surface-base)) 0%, var(--color-surface-base) 100%);
 }
 
 .suite-hero {
@@ -331,17 +331,17 @@ input {
 
 .stat-pill.additions {
   color: var(--color-status-success);
-  background: color-mix(in srgb, var(--color-status-success) 10%, white);
+  background: color-mix(in srgb, var(--color-status-success) 10%, var(--surface));
 }
 
 .stat-pill.deletions {
   color: var(--color-status-error);
-  background: color-mix(in srgb, var(--color-status-error) 9%, white);
+  background: color-mix(in srgb, var(--color-status-error) 10%, var(--surface));
 }
 
 .stat-pill.changes {
   color: var(--color-brand-primary);
-  background: color-mix(in srgb, var(--color-brand-primary) 11%, white);
+  background: color-mix(in srgb, var(--color-brand-primary) 12%, var(--surface));
 }
 
 .results-panel {
