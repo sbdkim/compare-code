@@ -1,10 +1,9 @@
 # Compare Code
 
-Client-side code and text diff workspace for comparing files in the browser with Northline styling and editor-grade controls.
+A browser-based code and text diff workspace with editor-style controls and local-only comparison.
 
 ## Live Demo
-Current GitHub Pages path:
-`https://sbdkim.github.io/compare-code/`
+[https://sbdkim.github.io/compare-code/](https://sbdkim.github.io/compare-code/)
 
 ## Key Features
 - Side-by-side and unified diff views
@@ -13,7 +12,7 @@ Current GitHub Pages path:
 - Line, word, and character-level highlighting
 - Language detection and syntax highlighting for common code formats
 - Filters for whitespace, case, and trimmed-line comparison
-- Local autosave and import/copy utilities
+- Local autosave plus import and copy utilities
 
 ## Tech Stack
 - React 19
@@ -35,15 +34,16 @@ npm test
 ```
 
 ## Deployment Notes
-- This project is configured for static hosting and GitHub Pages project-site deployment.
-- The Vite base path is configurable via `PAGES_BASE` and now defaults to `/compare-code/`.
-- The public Pages URL is `https://sbdkim.github.io/compare-code/`.
+- The project is configured for static hosting and GitHub Pages project-site deployment.
+- The Vite base path is configurable via `PAGES_BASE` and currently targets `/compare-code/`.
+- Use `npm run build` to produce the deployable static bundle.
 
-## Architecture
-- The diff domain model lives in `src/types/diff.ts`.
-- The app separates comparison logic from rendering so different view modes can reuse the same normalized diff document.
-- The browser stores editor state, language, comparison settings, and theme in `localStorage`.
+## Project Layout
+- `src/` diff logic, React components, and state management
+- `public/` static assets used by the deployed app
+- `vite.config.ts` build configuration for static hosting
+- `index.html` Vite entrypoint
 
-## Privacy / Notes
+## Notes
 - All comparison happens locally in the browser.
-- No code or text content is sent to a backend service.
+- Editor state, language, comparison settings, and theme are stored in `localStorage`.
