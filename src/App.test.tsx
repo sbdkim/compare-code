@@ -65,11 +65,10 @@ describe("App", () => {
     expect(window.localStorage.getItem("code-compare-session")).toContain('"leftText":""');
   });
 
-  it("persists the Northline light theme", () => {
+  it("does not persist a page-owned theme override", () => {
     render(<App />);
 
-    expect(document.documentElement.dataset.theme).toBe("light");
-    expect(window.localStorage.getItem("code-compare-session")).toContain('"theme":"light"');
+    expect(window.localStorage.getItem("code-compare-session")).not.toContain('"theme"');
   });
 
   it("copies unified diff output", async () => {

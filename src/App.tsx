@@ -67,16 +67,11 @@ function App() {
   );
 
   useEffect(() => {
-    document.documentElement.dataset.theme = "light";
-  }, []);
-
-  useEffect(() => {
     const session: PersistedSession = {
       version: 1,
       leftText,
       rightText,
       options,
-      theme: "light",
     };
     saveSession(session);
   }, [leftText, options, rightText]);

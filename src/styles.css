@@ -7,11 +7,11 @@
   --text: var(--color-text-primary);
   --text-muted: var(--color-text-secondary);
   --accent: var(--color-brand-primary);
-  --accent-muted: color-mix(in srgb, var(--color-brand-primary) 12%, white);
-  --addition-bg: color-mix(in srgb, var(--color-status-success) 12%, white);
-  --addition-token: color-mix(in srgb, var(--color-status-success) 22%, white);
-  --deletion-bg: color-mix(in srgb, var(--color-status-error) 10%, white);
-  --deletion-token: color-mix(in srgb, var(--color-status-error) 18%, white);
+  --accent-muted: color-mix(in srgb, var(--color-brand-primary) 12%, var(--surface));
+  --addition-bg: color-mix(in srgb, var(--color-status-success) 14%, var(--surface));
+  --addition-token: color-mix(in srgb, var(--color-status-success) 24%, var(--surface));
+  --deletion-bg: color-mix(in srgb, var(--color-status-error) 12%, var(--surface));
+  --deletion-token: color-mix(in srgb, var(--color-status-error) 20%, var(--surface));
   --context-bg: transparent;
   --shadow: var(--shadow-md);
 }
@@ -67,7 +67,7 @@ button:hover {
 button:focus-visible,
 select:focus-visible,
 input:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--color-brand-accent) 48%, white);
+  outline: 3px solid color-mix(in srgb, var(--color-brand-accent) 48%, var(--surface));
   outline-offset: 2px;
 }
 

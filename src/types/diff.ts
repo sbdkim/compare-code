@@ -71,5 +71,5 @@ export interface PersistedSession {
   leftText: string;
   rightText: string;
   options: ComparisonOptions;
-  theme: DiffTheme;
+  theme?: DiffTheme;
 }

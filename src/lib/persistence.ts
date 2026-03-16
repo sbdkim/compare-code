@@ -12,7 +12,6 @@ export function createDefaultSession(): PersistedSession {
     leftText: DEFAULT_LEFT_TEXT,
     rightText: DEFAULT_RIGHT_TEXT,
     options: DEFAULT_OPTIONS,
-    theme: "light",
   };
 }
 
@@ -33,8 +32,10 @@ export function loadSession(): PersistedSession {
     }
 
     return {
-      ...parsed,
-      theme: "light",
+      version: 1,
+      leftText: parsed.leftText ?? DEFAULT_LEFT_TEXT,
+      rightText: parsed.rightText ?? DEFAULT_RIGHT_TEXT,
+      options: parsed.options ?? DEFAULT_OPTIONS,
     };
   } catch {
     return createDefaultSession();
